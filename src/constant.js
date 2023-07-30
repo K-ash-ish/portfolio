@@ -31,3 +31,15 @@ export const projects = [
     image: "/eattreat.png",
   },
 ];
+export const posts = [
+  {
+    id: 1,
+    title: "Sample Post",
+    body: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Estreiciendis ab voluptatibus adipisci, delectus aut eveniet ipsamsequi quis voluptas ex perferendis blanditiis fuga assumenda nihilpraesentium eligendi at veritatis.",
+  },
+  {
+    id: 2,
+    title: "New Post",
+    body: " Lorem ipsum dolor sit amet consectetur adipisicing elit. Estreiciendis ab voluptatibus adipisci, delectus aut eveniet ipsamsequi quis voluptas ex perferendis blanditiis fuga assumenda nihilpraesentium eligendi at veritatis.",
+  },
+];
