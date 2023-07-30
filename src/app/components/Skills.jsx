@@ -1,17 +1,20 @@
 "use client";
 import { motion } from "../lib/framer";
 
-import React from "react";
-function Skills({ children }) {
-  console.log("childrend:", children);
+function Skills({ skill }) {
   return (
     <motion.div
-      className="border-2 w-12 h-12"
-      whileHover={{ scale: 1.2 }}
-      whileTap={{ scale: 1.1 }}
-      drag="x"
-      dragConstraints={{ left: -100, right: 100 }}
-    />
+      className="border-2 border-rose-500 rounded-lg mx-4 px-4 py-2 "
+      initial={{ opacity: 0, translateX: 120 }}
+      animate={{ opacity: 1, translateX: 0 }}
+      transition={{
+        ease: "linear",
+        duration: 1,
+        x: { duration: 1 },
+      }}
+    >
+      {skill}
+    </motion.div>
   );
 }
 
