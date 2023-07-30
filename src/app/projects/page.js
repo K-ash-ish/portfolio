@@ -2,15 +2,14 @@
 import { useState } from "react";
 import { motion } from "../lib/framer";
 import Image from "next/image";
-import Link from "next/link";
-
-function ProjectCard() {
+import { projects } from "../../constant";
+function ProjectCard(props) {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { title, about, tech, github, link, image } = props;
+  console.log(link);
   return (
     <motion.div
       layout
-      data-isOpen={isOpen}
       className={`border-gray-100 border-2 flex flex-col items-center justify-evenly my-4  ${
         isOpen ? "w-[600px] h-[600px]" : "w-80 h-80"
       }`}
@@ -18,39 +17,43 @@ function ProjectCard() {
     >
       <Image
         unoptimized
-        src="/yourpoll.png"
+        alt="project-image"
+        src={image}
         width={200}
         height={200}
-        className={`${isOpen ? "w-[400px] h-[400px]" : ""}`}
+        className={`${isOpen ? "w-[400px] h-[400px]" : ""} rounded-lg`}
       />
-      <h1>Project Title</h1>
+      <h1>{title}</h1>
       {isOpen && (
         <div className="flex flex-col">
-          <p>
-            Create an anonymous poll with YourPoll get RealTime vote results.
-          </p>
+          <p>{about}</p>
           <div className=" flex list-none justify-center">
-            <li className="border-2 border-rose-500 text-xs rounded-lg mx-1 p-1">
-              ReactJS
-            </li>
-            <li className="border-2 border-rose-500 text-xs rounded-lg mx-1 p-1">
-              TailwindCSS
-            </li>
-            <li className="border-2 border-rose-500 text-xs rounded-lg mx-1 p-1">
-              Firebase
-            </li>
+            {tech.map((data, index) => {
+              return (
+                <li
+                  key={index}
+                  className="border-2 border-rose-500 text-xs rounded-lg mx-1 p-1"
+                >
+                  {data}
+                </li>
+              );
+            })}
           </div>
           <div className="flex list-none justify-center">
             <a
               className="underline underline-offset-2 decoration-blue-500 text-sm mx-1 "
               target="_blank"
-              href="https://github.com/K-ash-ish/your-poll"
+              href={link.github}
             >
               Github
             </a>
-            <li className="underline underline-offset-2 decoration-blue-500 text-sm mx-1 ">
+            <a
+              target="_blank"
+              href={link.live}
+              className="underline underline-offset-2 decoration-blue-500 text-sm mx-1 "
+            >
               Live Link
-            </li>
+            </a>
           </div>
         </div>
       )}
@@ -59,14 +62,12 @@ function ProjectCard() {
 }
 
 export default function Projects() {
-  const projects = [];
-
   return (
-    <div className="flex items-center justify-around flex-wrap h-[90%] border-2">
+    <div className="flex items-center justify-around flex-wrap min-h-[90%] border-2">
       {/* <h1 className="text-xl">Projects</h1> */}
-      <ProjectCard />
-      <ProjectCard />
-      <ProjectCard />
+      {projects.map((project) => {
+        return <ProjectCard key={project.title} {...project} />;
+      })}
     </div>
   );
 }
